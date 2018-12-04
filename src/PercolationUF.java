@@ -9,7 +9,7 @@ public class PercolationUF implements IPercolate {
 	private final int VBOTTOM;
 	
 	
-	public PercolationUF(int size, IUnionFind finder) {
+	public PercolationUF(IUnionFind finder, int size) {
 		if (size < 1) throw new IllegalArgumentException("grid size must be greater than 0");
 		mySize = size;
 		VTOP = mySize * mySize;
@@ -41,7 +41,7 @@ public class PercolationUF implements IPercolate {
 		for (int k=0; k<deltaR.length; k++) {
 			int neighborR = row + deltaR[k];
 			int neighborC = col + deltaC[k];
-			if (inBounds(neighborR, neighborC) ) {
+			if (inBounds(neighborR, neighborC) && isOpen(neighborR, neighborC) && !isFull(neighborR, neighborC)) {
 				myFinder.union(value, pairToInt(neighborR, neighborC));
 			}
 		}

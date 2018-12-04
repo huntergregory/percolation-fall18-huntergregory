@@ -15,7 +15,7 @@ public class PercolationStats {
 	
 	 private IPercolate getPercolator(int size) {
 		 //return new PercolationBFS(size);
-         return new PercolationDFS(size); 
+         return new PercolationDFSFast(size); 
 		 //IUnionFind uf = new QuickUWPC();
          //return new PercolationUF(uf,size);
 	 }
