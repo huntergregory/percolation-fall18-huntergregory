@@ -32,16 +32,15 @@ public class PercolationUF implements IPercolate {
 		int value = pairToInt(row,col);
 		if (row == 0) 
 			myFinder.union(value, VTOP);
-		if (row == mySize - 1) {
+		if (row == mySize - 1)
 			myFinder.union(value, VBOTTOM);
-		}
 		
 		int[] deltaR = {0,0,-1,1};
 		int[] deltaC = {-1,1,0,0};
 		for (int k=0; k<deltaR.length; k++) {
 			int neighborR = row + deltaR[k];
 			int neighborC = col + deltaC[k];
-			if (inBounds(neighborR, neighborC)) {// && isOpen(neighborR, neighborC) && !isFull(neighborR, neighborC)) {
+			if (inBounds(neighborR, neighborC) && isOpen(neighborR, neighborC)) {
 				myFinder.union(value, pairToInt(neighborR, neighborC));
 			}
 		}
@@ -72,7 +71,7 @@ public class PercolationUF implements IPercolate {
 	//@throws IllegalArgumentException if inputs are out of myGrid's bounds
 	private void checkBounds(int r, int c) {
 		if (!inBounds(r,c))
-			throw new IllegalArgumentException("Inputs must be in a " + mySize + "x" + mySize + " grid's bounds");
+			throw new IndexOutOfBoundsException("Inputs must be in a " + mySize + "x" + mySize + " grid's bounds");
 	}
 	
 	private boolean inBounds(int r, int c) {
