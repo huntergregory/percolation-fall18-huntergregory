@@ -28,6 +28,7 @@ public class PercolationUF implements IPercolate {
 			return;
 		
 		myGrid[row][col] = true;
+		myOpenCount ++;
 		
 		int value = pairToInt(row,col);
 		if (row == 0) 
